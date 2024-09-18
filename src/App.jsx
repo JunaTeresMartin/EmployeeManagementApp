@@ -1,15 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./HomePage";
-import AddEmployees from "./AddEmployees";
+import EmployeeCRUD from "./EmployeeCRUD";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/add" element={<AddEmployees />} />
-        <Route path="/edit/:employeeId" element={<AddEmployees />} />
+        <Route path="/add" element={<EmployeeCRUD />} />
+        <Route path="/edit/:employeeId" element={<EmployeeCRUD />} />
       </Routes>
     </Router>
   );

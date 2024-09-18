@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import serverUrl from "./services/baseURL";
 import './App.css';
 
-const AddEmployees = () => {
+const EmployeeCRUD = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,12 +12,7 @@ const AddEmployees = () => {
   const [errors, setErrors] = useState({});
   const { employeeId } = useParams();
   const navigate = useNavigate();
-  const [employeeDetails, setEmployeeDetails] = useState({
-    id: "", 
-    name: "",
-    email: "",
-    status: ""
-  });
+
   useEffect(() => {
     if (id) {
       fetchEmployee(id);
@@ -162,4 +157,4 @@ const AddEmployees = () => {
   );
 };
 
-export default AddEmployees;
+export default EmployeeCRUD;
