@@ -21,8 +21,10 @@ const HomePage = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${serverUrl}/employees/${id}`);
-      fetchEmployees();
+      if (confirm("Are you sure? ")) {
+        await axios.delete(`${serverUrl}/employees/${id}`);
+        fetchEmployees();
+      }
     } catch (error) {
       console.error("Error deleting employee:", error);
     }
@@ -31,7 +33,9 @@ const HomePage = () => {
   return (
     <div className="container mt-5">
       <h2 className="mb-4">Employee List</h2>
-      <Link to="/add" className="btn btn-primary mb-3">Add Employee</Link>
+      <Link to="/add" className="btn btn-primary mb-3">
+        Add Employee
+      </Link>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -50,7 +54,12 @@ const HomePage = () => {
               <td>{employee.email}</td>
               <td>{employee.status}</td>
               <td>
-                <Link to={`/edit/${employee.id}`} className="btn btn-warning btn-sm me-2">Edit</Link>
+                <Link
+                  to={`/edit/${employee.id}`}
+                  className="btn btn-success btn-sm me-2"
+                >
+                  Edit
+                </Link>
                 <button
                   className="btn btn-danger btn-sm"
                   onClick={() => handleDelete(employee.id)}

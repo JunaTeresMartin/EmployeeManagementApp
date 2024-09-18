@@ -12,12 +12,17 @@ const AddEmployees = () => {
   const [errors, setErrors] = useState({});
   const { employeeId } = useParams();
   const navigate = useNavigate();
-
+  const [employeeDetails, setEmployeeDetails] = useState({
+    id: "", 
+    name: "",
+    email: "",
+    status: ""
+  });
   useEffect(() => {
-    if (employeeId) {
-      fetchEmployee(employeeId);
+    if (id) {
+      fetchEmployee(id);
     }
-  }, [employeeId]);
+  }, [id]);
 
   const fetchEmployee = async (id) => {
     try {
@@ -34,7 +39,7 @@ const AddEmployees = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!id.trim()) newErrors.id = "Id is required.";
+    if ((!id.trim()) && id.disabled) newErrors.id = "Id is required.";
     if (!name.trim()) newErrors.name = "Name is required.";
     if (!email.trim()) {
       newErrors.email = "Email is required.";
@@ -82,11 +87,12 @@ const AddEmployees = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4">{employeeId ? "Edit Employee" : "Add Employee"}</h2>
+      <h2 className="mb-4" style={{color:"Blue", textAlign:"center"}}>{employeeId ? "Edit Employee" : "Add Employee" }</h2>
       <form
         className="border border-primary rounded p-4 mx-auto"
         style={{ maxWidth: "500px" }}
         onSubmit={handleSubmit}
+        
       >
         <div className="mb-3">
           <label htmlFor="id" className="form-label">Id</label>
